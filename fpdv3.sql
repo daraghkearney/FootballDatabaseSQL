@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.29, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
 --
 -- Host: localhost    Database: football_db
 -- ------------------------------------------------------
--- Server version	8.0.29
+-- Server version	8.0.41
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -230,6 +230,37 @@ LOCK TABLES `team_of_the_year` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `transfers`
+--
+
+DROP TABLE IF EXISTS `transfers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `transfers` (
+  `transfer_id` int NOT NULL AUTO_INCREMENT,
+  `transfer_fee` decimal(15,2) DEFAULT NULL,
+  `season` varchar(50) NOT NULL,
+  `player_id` int NOT NULL,
+  `player_name` varchar(50) NOT NULL,
+  `from_club` varchar(100) NOT NULL,
+  `to_club` varchar(100) NOT NULL,
+  PRIMARY KEY (`transfer_id`),
+  KEY `player_id` (`player_id`),
+  CONSTRAINT `transfers_ibfk_1` FOREIGN KEY (`player_id`) REFERENCES `players` (`player_id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `transfers`
+--
+
+LOCK TABLES `transfers` WRITE;
+/*!40000 ALTER TABLE `transfers` DISABLE KEYS */;
+INSERT INTO `transfers` VALUES (1,77.00,'2024/2025',286,'Jhon Duran','Aston Villa','Al-Nassr'),(2,59.00,'2024/2025',440,'Omar Marmoush','Eintracht Frankfurt','Manchester City'),(3,50.00,'2024/2025',437,'Nico Gonzalez','Porto','Manchester City'),(4,0.00,'2024/2025',307,'Marcus Rashford','Manchester United','Aston Villa'),(5,35.00,'2024/2025',282,'Mohamed Simikan','RB Leipzig','Al-Nassr'),(6,18.00,'2024/2025',278,'Bento','Athletico-PR','Al-Nassr'),(7,0.00,'2024/2025',302,'Axel Disasi','Chelsea','Aston Villa'),(8,0.00,'2024/2025',308,'Marco Asensio','PSG','Aston Villa');
+/*!40000 ALTER TABLE `transfers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `users`
 --
 
@@ -266,4 +297,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-03-25  9:52:07
+-- Dump completed on 2025-03-25 10:01:07
