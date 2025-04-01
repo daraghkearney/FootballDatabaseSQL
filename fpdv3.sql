@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.41, for macos15 (arm64)
 --
 -- Host: localhost    Database: football_db
 -- ------------------------------------------------------
--- Server version	8.0.41
+-- Server version	9.2.0
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -98,6 +98,39 @@ CREATE TABLE `favorite_players` (
 LOCK TABLES `favorite_players` WRITE;
 /*!40000 ALTER TABLE `favorite_players` DISABLE KEYS */;
 /*!40000 ALTER TABLE `favorite_players` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `matches`
+--
+
+DROP TABLE IF EXISTS `matches`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `matches` (
+  `match_id` int NOT NULL AUTO_INCREMENT,
+  `home_club_id` int DEFAULT NULL,
+  `home_goals` int DEFAULT NULL,
+  `away_goals` int DEFAULT NULL,
+  `away_club_id` int DEFAULT NULL,
+  `game_week` int DEFAULT NULL,
+  `match_date` date DEFAULT NULL,
+  PRIMARY KEY (`match_id`),
+  KEY `home_club_id` (`home_club_id`),
+  KEY `away_club_id` (`away_club_id`),
+  CONSTRAINT `matches_ibfk_1` FOREIGN KEY (`home_club_id`) REFERENCES `clubs` (`club_id`),
+  CONSTRAINT `matches_ibfk_2` FOREIGN KEY (`away_club_id`) REFERENCES `clubs` (`club_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `matches`
+--
+
+LOCK TABLES `matches` WRITE;
+/*!40000 ALTER TABLE `matches` DISABLE KEYS */;
+INSERT INTO `matches` VALUES (1,16,1,0,22,1,'2024-08-16'),(2,21,1,2,3,1,'2024-08-17'),(3,18,1,1,5,1,'2024-08-17'),(4,17,1,0,19,1,'2024-08-17'),(5,10,0,3,7,1,'2024-08-17'),(6,2,2,0,22,1,'2024-08-17'),(7,12,0,2,14,1,'2024-08-17'),(8,8,0,2,15,1,'2024-08-18'),(9,6,2,1,9,1,'2024-08-18'),(10,13,1,1,20,1,'2024-08-19'),(11,3,0,2,2,2,'2024-08-24'),(12,20,4,0,10,2,'2024-08-24'),(13,19,0,1,18,2,'2024-08-24'),(14,15,4,1,12,2,'2024-08-24'),(15,11,2,1,13,2,'2024-08-24'),(16,9,0,2,21,2,'2024-08-24'),(17,7,2,1,16,2,'2024-08-24');
+/*!40000 ALTER TABLE `matches` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -328,4 +361,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-01 10:40:15
+-- Dump completed on 2025-04-01 10:49:47
